@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Tool\Validate;
+
 use App\Entity\Member;
 use App\Entity\TempPhone;
 use Illuminate\Support\Facades\Session;
+
 //我的输入校验类
 class MyValidate
 {
@@ -94,13 +96,11 @@ class MyValidate
             $m3result->status = 2;
             $m3result->message = '该用户不存在';
             return $m3result->toJson();
-        } else {
-            if (md5('bk' + $password) != $member->password) {
-                $m3result->status = 3;
-                $m3result->message = '密码不正确';
-                return $m3result->toJson();
-            }
-        }
-        return $member;
+        } else if (md5('bk' + $password) != $member->password) {
+            $m3result->status = 3;
+            $m3result->message = '密码不正确';
+            return $m3result->toJson();
+        } else
+            return $member;
     }
 }

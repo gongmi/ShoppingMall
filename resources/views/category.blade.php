@@ -28,9 +28,7 @@
         function getCategory() {
             var category_id = $('.weui_select option:selected').val();
             console.log("category_id:" + category_id);
-            $.get('/service/category/parent_id/' + category_id, {
-                '_token': '{{csrf_token()}}'
-            }, function (data) {
+            $.get('/service/category/parent_id/' + category_id, function (data) {
                 console.log("获取此类别的子类别");
                 console.log(data);
                 $('.weui_cells_access').html("");

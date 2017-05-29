@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
     <title> @yield('title')</title>
     <link rel="stylesheet" href="/css/weui.css">
+    <link rel="stylesheet" href="/css/weui2.css">
     <link rel="stylesheet" href="/css/book.css">
 </head>
 <body>

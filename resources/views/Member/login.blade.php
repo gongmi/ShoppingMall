@@ -45,24 +45,14 @@
                 'password': password,
                 'code': code,
             }, function (data) {
-                var datas = $.parseJSON(data);
-                if ((datas.status) == 0) {
-                    $('.bk_toptips').show();
-                    $('.bk_toptips span').html(datas.message);
-                    setTimeout(function () {
-                        $('.bk_toptips').hide();
-                    }, 2000);
-                    location.href = "{{url('/category')}}";
-                }
-                else {
-                    $('.bk_toptips').show();
-                    $('.bk_toptips span').html(datas.message);
-                    setTimeout(function () {
-                        $('.bk_toptips').hide();
-                    }, 2000);
-                    return;
-                }
-            });
+                $('.bk_toptips').show();
+                $('.bk_toptips span').html(data.message);
+                setTimeout(function () {
+                    $('.bk_toptips').hide();
+                }, 2000);
+                if ((data.status) == 0)
+                    location.href = '{{$return_url}}';
+            }, 'json');
         }
     </script>
 @endsection

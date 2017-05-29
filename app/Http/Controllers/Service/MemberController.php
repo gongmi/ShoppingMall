@@ -93,10 +93,11 @@ class MemberController extends Controller
         $code = $request->input('code', '');
         $v = MyValidate:: login($m3result, $username, $password, $code);
         if ($v instanceof Member) {
-           Session::put('member', $v);
+            Session::put('member', $v);
             $m3result->status = 0;
             $m3result->message = '登录成功';
-            return $m3result->toJson();
+            CartController::sync();
+            return response()->json($m3result)->withCookie('cart', null);
         } else
             return $v;
     }
