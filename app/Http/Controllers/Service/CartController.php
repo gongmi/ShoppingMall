@@ -39,7 +39,7 @@ class CartController extends Controller
                 foreach ($cart_items as $cart_item) {
                     if ($cart_item->product_id == $product_id) {
                         $cart_item->count = $cart_item->count + 1;
-                        $exist = ture;
+                        $exist = true;
                         break;
                     }
                 }

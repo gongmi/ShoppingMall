@@ -40,7 +40,7 @@ class MyValidate
         return null;
     }
 
-    public function phone($m3result, $phone_code, $phone)
+    public static function phone($m3result, $phone_code, $phone)
     {
         if ($phone_code == '' || strlen($phone_code) != 6) {
             $m3result->status = 5;
