@@ -36,4 +36,5 @@ Route::group(['prefix' => 'service', 'namespace' => 'Service'], function () {
 
 Route::group(['middleware' => 'check.login'], function () {
     Route::get('order/{ids}', 'view\OrderController@commit');
+    Route::get('order_list/{id?}', 'view\OrderController@index');
 });

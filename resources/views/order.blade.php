@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','订单')
+@section('title','订单详情')
 @section('content')
 
     <div class="page bk_content" style="top: 0;">
@@ -50,11 +50,11 @@
             <div class="weui-cell__bd">
                 <p>总金额</p>
             </div>
-            <div class="bk_price">￥ {{$total}}</div>
+            <div class="bk_price">￥ {{$order->total_price}}</div>
         </div>
     </div>
     <div class="bk_fix_bottom">
-        <button class="weui_btn weui_btn_primary" onclick="_order()">付款</button>
+        <button class="weui_btn weui_btn_primary" onclick="_pay()">付款</button>
     </div>
 @endsection
 
@@ -76,5 +76,12 @@
                 $('.weui_cells_form').eq(0).hide();
             }
         });
+        function _pay() {
+            $('.bk_toptips').show();
+            $('.bk_toptips span').html("付款成功");
+            setTimeout(function () {
+                location.href = '/order_list/' + '{{$order->id}}';
+            }, 2000);
+        }
     </script>
 @endsection
