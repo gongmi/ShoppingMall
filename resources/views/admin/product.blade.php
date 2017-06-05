@@ -65,6 +65,16 @@
     });
     layer.full(index);
   }
+
+  function product_edit(title, url) {
+      var index = layer.open({
+          type: 2,
+          title: title,
+          content: url
+      });
+      layer.full(index);
+  }
+
   function product_del(name, id) {
       layer.confirm('确认要删除【' + name + '】吗？', function (index) {
           //此处请求后台程序，下方是成功后的前台处理……

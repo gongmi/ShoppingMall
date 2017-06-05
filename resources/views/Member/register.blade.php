@@ -37,7 +37,7 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">短信验证码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="tel" placeholder="4位短信验证码" name="phone_code"/>
+                <input class="weui_input" type="tel" placeholder="6位短信验证码" name="phone_code"/>
             </div>
         </div>
         <div class="weui_cell">
@@ -210,7 +210,8 @@
                         setTimeout(function () {
                             $('.bk_toptips').hide();
                         }, 2000);
-                        return;
+                        if ((data.status) == 0)
+                            location.href = '/category';
                     });
                 }
             });

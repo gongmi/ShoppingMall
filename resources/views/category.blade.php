@@ -1,9 +1,10 @@
 @extends('master')
-@section('title','书籍类别')
+@section('title','Michelle 商城')
 @section('content')
-    <div class="weui_cells_title">选择书籍类别</div>
+    <div class="weui_cells_title">选择商品类别</div>
     <div class="weui_cells weui_cells_split">
         <div class="weui_cell weui_cell_select">
+
             <div class="weui_cell_bd weui_cell_primary">
                 <select class="weui_select" name="category">
                     @foreach($categories as $c)
@@ -35,6 +36,7 @@
                 for (var i = 0; i < data.length; i++) {
                     var node =
                         '<a class="weui_cell" href="' + '/category/show/' + data[i].id + '">' +
+                        '<div class="weui_cell_hd"><img class="bk_preview" src='+data[i].preview+'></div>' +
                         '<div class="weui_cell_bd weui_cell_primary">' +
                         '<p>' + data[i].name + '</p></div>' +
                         '<div class="weui_cell_ft"></div></a>';

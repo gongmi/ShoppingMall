@@ -29,8 +29,7 @@
     <div class="weui_mask_transition" id="mask"></div>
     <div class="weui_actionsheet" id="weui_actionsheet">
         <div class="weui_actionsheet_menu">
-            <div class="weui_actionsheet_cell" onclick="onMenuItemClick(1)">主页</div>
-            <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">书籍类别</div>
+            <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">商品类别</div>
             <div class="weui_actionsheet_cell" onclick="onMenuItemClick(3)">购物车</div>
             <div class="weui_actionsheet_cell" onclick="onMenuItemClick(4)">我的订单</div>
         </div>

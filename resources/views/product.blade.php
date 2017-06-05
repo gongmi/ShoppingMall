@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','书籍列表')
+@section('title',$category->name)
 @section('content')
 
     <div class="weui_cells weui_cells_access">
