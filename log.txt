@@ -807,3 +807,19 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </TemplateSMS>
 </Response>
 
+request body = <TemplateSMS>
+                    <to>15851835120</to>
+                    <appId>8a216da85c1ababd015c2f38c49e0573</appId>
+                    <templateId>1</templateId>
+                    <datas><data>797383</data><data>10</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85c1ababd015c2f38c41d056e/SMS/TemplateSMS?sig=7C41A33F386A363F146F82F0830B07C3
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>000000</statusCode>
+    <TemplateSMS>
+        <smsMessageSid>46411f776b7b4ab1a54b1acf116cc13b</smsMessageSid>
+        <dateCreated>20170606102707</dateCreated>
+    </TemplateSMS>
+</Response>
+
