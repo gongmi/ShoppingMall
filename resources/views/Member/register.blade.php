@@ -56,7 +56,7 @@
         <div class="weui_cell weui_vcode">
             <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="tel" placeholder="请输入验证码" name="p_code"/>
+                <input class="weui_input" type="text" placeholder="请输入验证码" name="p_code"/>
             </div>
             <div class="weui_cell_ft">
                 <img src="service/validate/code" onclick="this.src='service/validate/code?'+Math.random()"/>
@@ -69,7 +69,7 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">邮箱</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="tel" placeholder="请输入邮箱地址" name="email"/>
+                <input class="weui_input" type="text" placeholder="请输入邮箱地址" name="email"/>
             </div>
         </div>
         <div class="weui_cell">
