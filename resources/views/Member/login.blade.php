@@ -51,7 +51,7 @@
                     $('.bk_toptips').hide();
                 }, 2000);
                 if ((data.status) == 0)
-                    location.href = '{{$return_url}}';
+                    location.href = '/category';
             }, 'json');
         }
     </script>

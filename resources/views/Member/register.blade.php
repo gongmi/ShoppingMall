@@ -211,7 +211,7 @@
                             $('.bk_toptips').hide();
                         }, 2000);
                         if ((data.status) == 0)
-                            location.href = '/category';
+                            location.href = '/login';
                     });
                 }
             });
