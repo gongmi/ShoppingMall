@@ -8,7 +8,8 @@
                 <div class="swipe-wrap">
                     @foreach($pdt_images as $pdt_image)
                         <div>
-                            <a href="javascript:;"><img class="img-responsive" src="{{$pdt_image->image_path}}"/></a>
+                            <a href="{{$pdt_image->image_path}}">
+                                <img class="img-responsive" src="{{$pdt_image->image_path}}"/></a>
                         </div>
                     @endforeach
                 </div>
@@ -30,7 +31,7 @@
         </div>
 
 
-        <div class="weui_cells_title">detail</div>
+        <div class="weui_cells_title">商品详情</div>
         <div class="weui_cells">
             <div class="weui_cell">
                 @if($pdt_content!=null)
@@ -73,11 +74,7 @@
 
         function addCart(id) {
             $.get('/service/cart/add/' + id, function (data) {
-                $('.bk_toptips').show();
-                $('.bk_toptips span').html(data.message);
-                setTimeout(function () {
-                    $('.bk_toptips').hide();
-                }, 2000);
+                showTip(data.message);
             }, 'json');
             var count = $(".weui-badge").html();
             $(".weui-badge").html(Number(count) + 1);

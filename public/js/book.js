@@ -26,11 +26,6 @@ function onMenuItemClick(index) {
     var weuiActionsheet = $('#weui_actionsheet');
     hideActionSheet(weuiActionsheet, mask);
     if (index == 1) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html("敬请期待!");
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
     } else if (index == 2) {
         location.href = '/category';
     } else if (index == 3) {
@@ -39,212 +34,96 @@ function onMenuItemClick(index) {
         location.href = '/order_list';
     }
 }
+function showTip(tip) {
+    $('.bk_toptips').show();
+    $('.bk_toptips span').html(tip);
+    setTimeout(function () {
+        $('.bk_toptips').hide();
+    }, 2000);
+}
 
-
-function verifyPhone(phone, password, confirm, phone_code, code) {
+function verifyPhone(arr) {
     // 手机号不为空
-    if (phone == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('请输入手机号');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[1].value == '') {
+        return '请输入手机号';
     }
-    // 手机号格式
-    if (phone.length != 11 || phone[0] != '1') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('手机格式不正确');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[1].value.length != 11 || arr[1].value[0] != '1') {
+        return '手机格式不正确';
     }
-    if (password == '' || confirm == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能为空');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[3].value == '' || arr[4].value == '') {
+        return '密码不能为空';
     }
-    if (password.length < 6 || confirm.length < 6) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能少于6位');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[3].value.length < 6 || arr[4].value.length < 6) {
+        return '密码不能少于6位';
     }
-    if (password != confirm) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('两次密码不相同!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[3].value != arr[4].value) {
+        return '两次密码不相同!';
     }
-    if (phone_code == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('手机验证码不能为空!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[2].value == '') {
+        return '手机验证码不能为空!';
     }
-    if (phone_code.length != 6) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('手机验证码为6位!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[2].value.length != 6) {
+        return '手机验证码为6位!';
     }
-
-    if (code == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码不能为空!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[5].value == '') {
+        return '验证码不能为空!';
     }
-    if (code.length != 4) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码为4位!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[5].value.length != 4) {
+        return '验证码为4位!';
     }
-
     return true;
 }
 
-function verifyEmail(email, password, confirm, code) {
+function verifyEmail(arr) {
     // 邮箱不为空
-    if (email == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('请输入邮箱');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[1].value == '') {
+        return '请输入邮箱';
     }
-    // 邮箱格式
-    if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('邮箱格式不正确');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[1].value.indexOf('@') == -1 || arr[1].value.indexOf('.') == -1) {
+        return '邮箱格式不正确';
     }
-    if (password == '' || confirm == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能为空');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[2].value == '' || arr[3].value == '') {
+        return '密码不能为空';
     }
-    if (password.length < 6 || confirm.length < 6) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能少于6位');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[2].value.length < 6 || arr[3].value.length < 6) {
+        return '密码不能少于6位';
     }
-    if (password != confirm) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('两次密码不相同!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[2].value != arr[3].value) {
+        return '两次密码不相同!';
     }
-    if (code == '') {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码不能为空!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[4].value == '') {
+        return '验证码不能为空!';
     }
-    if (code.length != 4) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码为4位!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return false;
+    if (arr[4].value.length != 4) {
+        return '验证码为4位!';
     }
     return true;
 }
-function verifyLogin(username, password, code) {
+function verifyLogin(arr) {
 
-    if (username.length == 0) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('帐号不能为空');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return;
+    if (arr[1].value.length == 0) {
+        return '帐号不能为空';
     }
-    if (username.indexOf('@') == -1) { //手机号
-        if (username.length != 11 || username[0] != 1) {
-            $('.bk_toptips').show();
-            $('.bk_toptips span').html('帐号格式不对!');
-            setTimeout(function () {
-                $('.bk_toptips').hide();
-            }, 2000);
-            return;
+    if (arr[1].value.indexOf('@') == -1) { //手机号
+        if (arr[1].value.length != 11 || arr[1].value[0] != 1) {
+            return '帐号格式不对!';
         }
-    } else {
-        if (username.indexOf('.') == -1) {
-            $('.bk_toptips').show();
-            $('.bk_toptips span').html('帐号格式不对!');
-            setTimeout(function () {
-                $('.bk_toptips').hide();
-            }, 2000);
-            return;
-        }
+    } else if (arr[1].value.indexOf('.') == -1) {
+        return '帐号格式不对!';
     }
-// 密码
-    if (password.length == 0) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能为空!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return;
+    if (arr[2].value.length == 0) {
+        return '密码不能为空!';
     }
-    if (password.length < 6) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('密码不能少于6位!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return;
+    if (arr[2].value.length < 6) {
+        return '密码不能少于6位!';
     }
-// 验证码
-    if (code.length == 0) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码不能为空!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return;
+    if (arr[3].value.length == 0) {
+        return '验证码不能为空!';
     }
-    if (code.length < 4) {
-        $('.bk_toptips').show();
-        $('.bk_toptips span').html('验证码不能少于4位!');
-        setTimeout(function () {
-            $('.bk_toptips').hide();
-        }, 2000);
-        return;
+    if (arr[3].value.length < 4) {
+        return '验证码不能少于4位!';
     }
+    return true;
 }
 // 将标题栏和标题保持一致
 $('.bk_title_content').html(document.title);

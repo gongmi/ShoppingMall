@@ -56,43 +56,31 @@
         })
         function _delete() {
             delete_arr = [];
-            $('input:checkbox[name=cart_item]').each(function () {
-                if ($(this).attr('checked') == 'checked')
-                    delete_arr.push($(this).attr('id'));
+            $(':checked').each(function () {
+                var id = $(this).attr('id');
+                $('label').filter(function (index) {
+                    return $(this).attr('for') == id;
+                }).slideUp();
+
+                delete_arr.push(id);
             });
             if (delete_arr.length == 0) {
-                $('.bk_toptips').show();
-                $('.bk_toptips span').html("请选择删除项");
-                setTimeout(function () {
-                    $('.bk_toptips').hide();
-                }, 2000);
+                showTip("请选择删除项");
                 return;
             }
             console.log(delete_arr);
             $.get('/service/cart/delete/' + delete_arr, function (data) {
-                $('.bk_toptips').show();
-                $('.bk_toptips span').html(data.message);
-                setTimeout(function () {
-                    $('.bk_toptips').hide();
-                }, 2000);
-                if ((data.status) == 0)
-                    location.reload();
+                showTip(data.message);
             }, 'json');
-
         }
 
         function _order() {
             order_arr = [];
-            $('input:checkbox[name=cart_item]').each(function () {
-                if ($(this).attr('checked') == 'checked')
-                    order_arr.push($(this).attr('id'));
+            $(':checked').each(function () {
+                order_arr.push($(this).attr('id'));
             });
             if (order_arr.length == 0) {
-                $('.bk_toptips').show();
-                $('.bk_toptips span').html("请选择结算项");
-                setTimeout(function () {
-                    $('.bk_toptips').hide();
-                }, 2000);
+                showTip("请选择结算项");
                 return;
             }
             location.href = '/order/' + order_arr;

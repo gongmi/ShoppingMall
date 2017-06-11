@@ -18,12 +18,12 @@
             </div>
             <div class="weui_cell_ft">
                 <input type="radio" class="weui_check" name="register_type" id="x12">
-                <span class="weui_icon_checked"></span>
+                <span class="weui_icon_checked" style="display:none;"></span>
             </div>
         </label>
     </div>
 
-    <div class="weui_cells weui_cells_form">
+    <form id="form1" class="weui_cells weui_cells_form">
         {!! csrf_field() !!}
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
@@ -37,63 +37,63 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">短信验证码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="tel" placeholder="6位短信验证码" name="phone_code"/>
+                <input class="weui_input" type="number" placeholder="6位短信验证码" name="phone_code"/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="password" placeholder="不少于6位" name='passwd_phone'/>
+                <input class="weui_input" type="password" placeholder="不少于6位" name='password'/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="password" placeholder="不少于6位" name='passwd_phone_cfm'/>
+                <input class="weui_input" type="password" placeholder="不少于6位" name='confirm'/>
             </div>
         </div>
 
         <div class="weui_cell weui_vcode">
             <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" placeholder="请输入验证码" name="p_code"/>
+                <input class="weui_input" type="text" placeholder="请输入验证码" name="code"/>
             </div>
             <div class="weui_cell_ft">
                 <img src="service/validate/code" onclick="this.src='service/validate/code?'+Math.random()"/>
             </div>
         </div>
-    </div>
+    </form>
 
-    <div class="weui_cells weui_cells_form" style="display:none;">
+    <form id="form2" class="weui_cells weui_cells_form" style="display:none;">
         {!! csrf_field() !!}
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">邮箱</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" placeholder="请输入邮箱地址" name="email"/>
+                <input class="weui_input" type="email" placeholder="请输入邮箱地址" name="email"/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="password" placeholder="不少于6位" name='passwd_email'/>
+                <input class="weui_input" type="password" placeholder="不少于6位" name='password'/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="password" placeholder="不少于6位" name='passwd_email_cfm'/>
+                <input class="weui_input" type="password" placeholder="不少于6位" name='confirm'/>
             </div>
         </div>
         <div class="weui_cell weui_vcode">
             <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" placeholder="请输入验证码" name="e_code"/>
+                <input class="weui_input" type="text" placeholder="请输入验证码" name="code"/>
             </div>
             <div class="weui_cell_ft">
                 <img src="service/validate/code" onclick="this.src='service/validate/code?'+Math.random()"/>
             </div>
         </div>
-    </div>
+    </form>
     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" href="javascript:" onclick="onRegisterClick();">注册</a>
     </div>
@@ -102,21 +102,18 @@
 
 @section('my-js')
     <script type="text/javascript">
-        $('#x12').next().hide();
-        $('input:radio[name=register_type]').click(function () {
-            $('input:radio[name=register_type]').attr('checked', false);
-            $(this).attr('checked', true);
-            if ($(this).attr('id') == 'x11') {
-                $('#x11').next().show();
-                $('#x12').next().hide();
-                $('.weui_cells_form').eq(0).show();
-                $('.weui_cells_form').eq(1).hide();
-            } else if ($(this).attr('id') == 'x12') {
-                $('#x12').next().show();
-                $('#x11').next().hide();
-                $('.weui_cells_form').eq(1).show();
-                $('.weui_cells_form').eq(0).hide();
-            }
+        $('#x11').click(function () {
+            $('#x11').next().show();
+            $('#x12').next().hide();
+            $('#form1').slideDown();
+            $('#form2').hide(100);
+        });
+
+        $('#x12').click(function () {
+            $('#x12').next().show();
+            $('#x11').next().hide();
+            $('#form2').slideDown();
+            $('#form1').hide(100);
         });
         var enable = true;
         $('.bk_phone_code_send').click(function () {
@@ -137,8 +134,7 @@
                         $('.bk_phone_code_send').removeClass('bk_important');
                         $('.bk_phone_code_send').addClass('bk_summary');
                     }
-                    $('.bk_phone_code_send').html(--num + 's 重新发送')
-
+                    $('.bk_phone_code_send').html(--num + 's 后可重新发送')
                 }
             }, 1000);
             var phone = $('input[name=phone]').val();
@@ -146,75 +142,32 @@
                 '_token': '{{csrf_token()}}',
                 'phone': phone,
             }, function (data) {
-                var datas = $.parseJSON(data);
-                if ((datas.status) == 0) {
-                    $('.bk_toptips').show();
-                    $('.bk_toptips span').html('发送成功');
-                    setTimeout(function () {
-                        $('.bk_toptips').hide();
-                    }, 2000);
-                }
-                else {
-                    $('.bk_toptips').show();
-                    $('.bk_toptips span').html(datas.message[0]);
-                    setTimeout(function () {
-                        $('.bk_toptips').hide();
-                    }, 2000);
-                }
-            });
+                showTip(data.message);
+            }, 'Json');
+
         });
     </script>
 
     <script type="text/javascript">
         function onRegisterClick() {
-            $('input:radio[name=register_type]').each(function (index, el) {
-                if ($(this).attr('checked') == 'checked') {
-                    var email = '';
-                    var phone = '';
-                    var password = '';
-                    var confirm = '';
-                    var phone_code = '';
-                    var code = '';
-
-                    var id = $(this).attr('id');
-                    if (id == 'x11') {
-                        phone = $('input[name=phone]').val();
-                        password = $('input[name=passwd_phone]').val();
-                        confirm = $('input[name=passwd_phone_cfm]').val();
-                        phone_code = $('input[name=phone_code]').val();
-                        code = $('input[name=p_code]').val();
-                        if (verifyPhone(phone, password, confirm, phone_code, code) == false) {
-                            return;
-                        }
-                    } else if (id == 'x12') {
-                        email = $('input[name=email]').val();
-                        password = $('input[name=passwd_email]').val();
-                        confirm = $('input[name=passwd_email_cfm]').val();
-                        code = $('input[name=e_code]').val();
-                        if (verifyEmail(email, password, confirm, code) == false) {
-                            return;
-                        }
-                    }
-                    $.post('{{url('service/register')}}', {
-                        '_token': '{{csrf_token()}}',
-                        'phone': phone,
-                        'email': email,
-                        'password': password,
-                        'confirm': confirm,
-                        'phone_code': phone_code,
-                        'code': code,
-                    }, function (data) {
-                        var datas = $.parseJSON(data);
-                        $('.bk_toptips').show();
-                        $('.bk_toptips span').html(datas.message);
-                        setTimeout(function () {
-                            $('.bk_toptips').hide();
-                        }, 2000);
-                        if ((data.status) == 0)
-                            location.href = '/login';
-                    });
-                }
-            });
+            var inputs;
+            var verity_res;
+            if ($('#x11').attr('checked') == 'checked') {
+                inputs = $("#form1 input").serializeArray();
+                verity_res = verifyPhone(inputs);
+            } else {
+                inputs = $("#form2 input").serializeArray();
+                verity_res = verifyEmail(inputs);
+            }
+            if (verity_res != true) {
+                showTip(verity_res);
+                return;
+            }
+            $.post('{{url('service/register')}}', inputs, function (data) {
+                showTip(data.message);
+//                if ((data.status) == 0)
+//                    location.href = '/login';
+            }, 'Json');
         }
     </script>
 @endsection

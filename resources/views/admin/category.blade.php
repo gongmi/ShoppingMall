@@ -4,7 +4,7 @@
 <div class="pd-20">
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript:;" onclick="category_add('添加类别','/admin/category_add')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加类别</a>
+			<a  onclick="category_add('添加类别','/admin/category_add')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加类别</a>
 		</span>
 		<span class="r">共有数据：<strong>{{count($categories)}}</strong> 条</span>
 	</div>
@@ -33,8 +33,8 @@
 						<img src="{{$category->preview}}" alt="" style="width: 50px; height: 50px;">
 					@endif</td>
 					<td class="td-manage">
-						<a title="编辑" href="javascript:;" onclick="category_edit('编辑类别','/admin/category_edit?id={{$category->id}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick='category_del("{{$category->name}}", "{{$category->id}}")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						<a title="编辑"  onclick="category_edit('编辑类别','/admin/category_edit?id={{$category->id}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除"  onclick='category_del("{{$category->name}}", "{{$category->id}}")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
 			@endforeach

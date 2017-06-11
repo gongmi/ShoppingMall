@@ -1,11 +1,12 @@
 @extends('master')
 @section('title','登录')
 @section('content')
-    <div class="weui_cells weui_cells_form">
+    <form class="weui_cells weui_cells_form">
+        {!! csrf_field() !!}
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">账号</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="tel" placeholder="请输入手机号码或邮箱" name="username"/>
+                <input class="weui_input" type="text" placeholder="请输入手机号码或邮箱" name="username"/>
             </div>
         </div>
         <div class="weui_cell">
@@ -23,9 +24,9 @@
                 <img src="service/validate/code" onclick="this.src='service/validate/code?'+Math.random()"/>
             </div>
         </div>
-    </div>
+    </form>
     <div class="weui_btn_area">
-        <a class="weui_btn weui_btn_primary" href="javascript:" onclick="onLoginClick();">确定</a>
+        <a class="weui_btn weui_btn_primary" onclick="onLoginClick();">确定</a>
     </div>
     <a href="/register" class="bk_bottom_tips bk_important">没有帐号? 去注册</a>
 @endsection
@@ -33,23 +34,15 @@
 @section('my-js')
     <script type="text/javascript">
         function onLoginClick() {
-            username = $('input[name=username]').val();
-            password = $('input[name=password]').val();
-            code = $('input[name=code]').val();
-            if (verifyLogin(username, password, code) == false) {
+            var inputs = $("form input").serializeArray();
+//            console.log(inputs);
+            var verity_res = verifyLogin(inputs);
+            if (verity_res != true) {
+                showTip(verity_res);
                 return;
             }
-            $.post('{{url('service/login')}}', {
-                '_token': '{{csrf_token()}}',
-                'username': username,
-                'password': password,
-                'code': code,
-            }, function (data) {
-                $('.bk_toptips').show();
-                $('.bk_toptips span').html(data.message);
-                setTimeout(function () {
-                    $('.bk_toptips').hide();
-                }, 2000);
+            $.post('{{url('service/login')}}', inputs, function (data) {
+                showTip(data.message);
                 if ((data.status) == 0)
                     location.href = '/category';
             }, 'json');

@@ -48,6 +48,12 @@ class MyValidate
             return $m3result->toJson();
         }
         $tempPhone = TempPhone::where('phone', $phone)->first();
+        if($tempPhone==null)
+        {
+            $m3result->status = 1;
+            $m3result->message = "请发送短信验证码";
+            return $m3result->toJson();
+        }
         if (time() > strtotime($tempPhone->deadline)) {
             $m3result->status = 1;
             $m3result->message = "手机验证码已过期";

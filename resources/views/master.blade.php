@@ -11,7 +11,7 @@
 <body>
 
 <div class="bk_title_bar">
-    <img class="bk_back" src="/images/back.png" onclick="history.go(-1);">
+    <img class="bk_back" src="/images/back.png" onclick="history.back();">
     <p class="bk_title_content"></p>
     <img class="bk_menu" src="/images/menu.png" onclick="onMenuClick();">
 </div>
@@ -39,8 +39,8 @@
     </div>
 </div>
 </body>
-<script src="/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="/js/book.js" type="text/javascript"></script>
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/book.js"></script>
 
 @yield('my-js')
 </html>
