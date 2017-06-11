@@ -1001,3 +1001,19 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </TemplateSMS>
 </Response>
 
+request body = <TemplateSMS>
+                    <to>15851835120</to>
+                    <appId>8a216da85c1ababd015c2f38c49e0573</appId>
+                    <templateId>1</templateId>
+                    <datas><data>172907</data><data>10</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da85c1ababd015c2f38c41d056e/SMS/TemplateSMS?sig=314A3A15BB9F3264D26477331D8F9B1D
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>000000</statusCode>
+    <TemplateSMS>
+        <smsMessageSid>fa67dfa52f2c45aaaf0c2d3b10dd6ba8</smsMessageSid>
+        <dateCreated>20170611111559</dateCreated>
+    </TemplateSMS>
+</Response>
+
