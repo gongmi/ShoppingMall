@@ -43,14 +43,12 @@
         $('input:checkbox[name=cart_item]').click(function () {
             var check = $(this).attr('checked');
             if (check == 'checked') {
-                $(this).attr('checked', false);
-                $(this).next().removeClass('weui-icon-checked');
-                $(this).next().addClass('weui-icon-unchecked');
+                $(this).attr('checked', false)
+                    .next().attr('class', 'weui-icon-unchecked');
             }
             else {
-                $(this).attr('checked', 'checked');
-                $(this).next().removeClass('weui-icon-unchecked');
-                $(this).next().addClass('weui-icon-checked');
+                $(this).attr('checked', 'checked')
+                    .next().attr('class', 'weui-icon-checked');
             }
 
         })

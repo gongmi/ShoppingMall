@@ -30,7 +30,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <input class="weui_input" type="tel" placeholder="请输入手机号码" name="phone"/>
             </div>
-            <p class=" bk_important bk_phone_code_send">发送验证码</p>
+            <p class="bk_important" id="send_code">发送验证码</p>
             <div class="weui_cell_ft">
             </div>
         </div>
@@ -103,38 +103,35 @@
 @section('my-js')
     <script type="text/javascript">
         $('#x11').click(function () {
-            $('#x11').next().show();
-            $('#x12').next().hide();
+            $('#x11').attr('checked', true).next().show();
+            $('#x12').attr('checked', false).next().hide();
             $('#form1').slideDown();
             $('#form2').hide(100);
         });
 
         $('#x12').click(function () {
-            $('#x12').next().show();
-            $('#x11').next().hide();
+            $('#x12').attr('checked', true).next().show();
+            $('#x11').attr('checked', false).next().hide();
             $('#form2').slideDown();
             $('#form1').hide(100);
         });
         var enable = true;
-        $('.bk_phone_code_send').click(function () {
-            if (enable == false)
+        $('#send_code').click(function () {
+            if (!enable)
                 return;
             enable = false;
             var num = 10;
             var interval = window.setInterval(function () {
-                if (num == 0) {
+                if (num == 1) {
                     enable = true;
                     window.clearInterval(interval);
-                    $('.bk_phone_code_send').html('重新发送验证码');
-                    $('.bk_phone_code_send').removeClass('bk_summary');
-                    $('.bk_phone_code_send').addClass('bk_important');
+                    $('#send_code').html('重新发送验证码').attr('class', 'bk_important');
                 }
                 else {
                     if (num == 10) {
-                        $('.bk_phone_code_send').removeClass('bk_important');
-                        $('.bk_phone_code_send').addClass('bk_summary');
+                        $('#send_code').attr('class', 'bk_summary');
                     }
-                    $('.bk_phone_code_send').html(--num + 's 后可重新发送')
+                    $('#send_code').html(--num + 's 后可重新发送')
                 }
             }, 1000);
             var phone = $('input[name=phone]').val();
